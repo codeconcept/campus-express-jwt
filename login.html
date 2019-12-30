@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+</head>
+
+<body>
+    <form>
+        <input type="text" placeholder="email" id="txtEmail"><br>
+        <input type="password" name="" placeholder="password" id="txtPassword"><br>
+        <button type="submit" id="btnSubmit">login</button>
+    </form>
+    <script>
+        const txtEmail = document.getElementById('txtEmail');
+        const txtPassword = document.getElementById('txtPassword');
+        const btnSubmit = document.getElementById('btnSubmit');
+
+        const login = (evt) => {
+            evt.preventDefault();
+            const email = txtEmail.value.trim();
+            const password = txtPassword.value.trim();
+            console.log(email, password);
+
+            fetch('http://localhost:5000/login', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            }).then(data => {
+                console.log(data)
+            })
+        };
+
+        btnSubmit.addEventListener('click', login)
+    </script>
+</body>
+
+</html>
