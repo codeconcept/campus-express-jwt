@@ -26,6 +26,7 @@ app.get("/login", (req, res) => {
 
 app.post("/login", (req, res) => {
   console.log("req.body", req.body);
+  res.status(200).send(req.body);
 });
 
 app.get("/students", (req, res) => {
