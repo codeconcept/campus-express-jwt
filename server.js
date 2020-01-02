@@ -10,11 +10,13 @@ app.use(express.json());
 const students = [
   {
     id: 1,
-    firstName: "Quentin"
+    firstName: "Quentin",
+    email: "quentin@test.fr"
   },
   {
     id: 2,
-    firstName: "Camille"
+    firstName: "Camille",
+    email: "camille@test.fr"
   }
 ];
 
@@ -37,6 +39,13 @@ app.post("/login", (req, res) => {
 
 app.get("/students", (req, res) => {
   res.json(students);
+});
+
+app.get("/profile/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const student = students.find(s => s.id === id);
+  console.log("student", student);
+  res.status(200).json(student);
 });
 
 app.listen(5000, () => {
